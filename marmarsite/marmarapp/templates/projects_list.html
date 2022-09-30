@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load menu_tags %}
+{% block content %}
+    {#    <section class="projects ">#}
+    {#        <div class="container">#}
+    {#            <div class="projects_content">#}
+    {#                <h2 class="projects_title">Реализованные#}
+    {#                    проекты</h2>#}
+    {#                <a href="" class="projects_text">посмотреть все</a>#}
+    {#            </div>#}
+    {#        </div>#}
+    {##}
+    {#        <div class="container_right">#}
+    {#            <div class="slider_top owl-carousel owl-theme">#}
+    {#                {% for projects in object_list %}#}
+    {#                    <a href=""><img src="{{ projects.image }}" alt="" class="projects_slider_img"></a>#}
+    {#                {% endfor %}#}
+    {#            </div>#}
+    {#            <div class="slider_bottom owl-carousel owl-theme">#}
+    {#                <a href=""><img src="../static/img/project_img.png" alt="" class="projects_slider_img"></a>#}
+    {#                <a href=""><img src="../static/img/project_img.png" alt="" class="projects_slider_img"></a>#}
+    {#                <a href=""><img src="../static/img/project_img.png" alt="" class="projects_slider_img"></a>#}
+    {#                <a href=""><img src="../static/img/project_img.png" alt="" class="projects_slider_img"></a>#}
+    {#                <a href=""><img src="../static/img/project_img.png" alt="" class="projects_slider_img"></a>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </section>#}
+    <div class="container">
+        <h1 class="projects_list_titel">Реализованные проекты</h1>
+
+        <ul class="nav_list">
+            {% get_categories %}
+        </ul>
+        <div class="projects_list">
+            {% for project in object_list %}
+                <div class="projects_lists">
+                    <h2 class="projects_lists_titel">{{ project.title }}</h2>
+                    <a href="{{ project.get_absolute_url }}"><img src="{{ project.image.url }}" class="projects_img"
+                                                                  alt=""></a>
+                    <p class="projects_lists_text">{{ project.text|slice:":100" }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% load mptt_tags %}
+
+{#<ul class="root">#}
+{#    {% recursetree list_project %}#}
+{#        <li>#}
+{#            {{ node.name }}#}
+{#            {% if not node.is_leaf_node %}#}
+{#                <ul class="children">#}
+{#                    {{ children }}#}
+{#                </ul>#}
+{#            {% endif %}#}
+{#        </li>#}
+{#    {% endrecursetree %}#}
+{#</ul>#}
+{% recursetree list_project %}
+    <ul class="dropdown">
+        <a href="{% url 'project_list' node.slug %}" class="dropbtn">{{ node.name }}</a>
+        {% if not node.is_leaf_node %}
+            <li class="dropdown-content">
+                <a href="{% url 'project_list' node.slug %}">{{ children }}</a>
+            </li>
+        {% endif %}
+    </ul>
+{% endrecursetree %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="project_single">
+            <h1 class="project_single_titel">{{ project.title }}</h1>
+            <div class="project_img">
+                <img class="projects_imgs" src="{{ project.image.url }}" alt="">
+            </div>
+            <div class="project_img_imgs">
+                {% for img in project.get_image %}
+                    <img src="/media/{{ img.images }}" alt="" class="img_imgs">
+                {% endfor %}
+            </div>
+            <p class="project_single_text">{{ project.text }}</p>
+        </div>
+    </div>
+{% endblock content %}

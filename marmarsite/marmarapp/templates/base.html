@@ -1,0 +1,111 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>Invoriem</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+          integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css"
+          integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="{% static "../static/main.css" %}">
+</head>
+<body>
+
+<div class="container">
+    <div class="header_top">
+        <nav class="nav">
+            <a href="{% url 'index' %}" class="nav_logo">
+                <img src="{% static  'img/logo-1.svg' %}" alt="logomarmar">
+            </a>
+            <ul class="nav_list">
+                <li><a href="#about" class="nav_link">О нас</a></li>
+                <li><a href="#about_user" class="nav_link">Наши сотрудники</a></li>
+                <li><a href="#projects" class="nav_link">Проекты</a></li>
+                <li><a href="#reviews" class="nav_link">Отзывы</a></li>
+                <li><a href="#footer" class="nav_link">Контакты</a></li>
+            </ul>
+            <a href="#order" class="nav_btn">Отправить заявку</a>
+            <span style="font-size:50px;cursor:pointer" onclick="openNav()">&#9776;</span>
+        </nav>
+        <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+                <a href="#about">О нас</a>
+                <a href="#about_user">Наши сотрудники</a>
+                <a href="#projects">Проекты</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#footer">Контакты</a>
+                <a href="#order">Отправить заявку</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% block content %}
+{% endblock content %}
+
+<section class="footer" >
+    <div class="container" id="footer">
+        <div class="info_left">
+            <div class="top_info">
+                <h2>реквезиты</h2>
+                <p>ООО "БЕЛТЕХИНЖИНИРИНГ"
+                    Директор: Никонова Светлана Викторовна
+                    Действует на основании Устава
+                    220031 г.Минск, ул.Фр. Скорины д. 14 оф. 514
+                    УНП 193412639
+                    p/c BY34 ALFA 3012 2635 0400 1027 0000</p>
+            </div>
+            <div class="bottom_info">
+                <h2>Контакты</h2>
+                <p>+998 90 000 00 00</p>
+                <p>+998 91 100 10 10</p>
+            </div>
+
+        </div>
+        <div class="info-right">
+            <div class="top_info">
+                <h2>офис</h2>
+                <p>г. Бухара ул.Накшбанд
+                    дом 23</p>
+            </div>
+            <div class="bottom_info">
+                <h2>написать нам</h2>
+                <p>examplee-mail@gmail.com</p>
+            </div>
+        </div>
+        <div class="maps">
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d766.7236394783909!2d64.42436098319703!3d39.76447575805954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f500729bdedd243%3A0x6e13727d05fb775!2smarmardesign!5e0!3m2!1sru!2s!4v1663284523728!5m2!1sru!2s"
+                        width="500" height=350" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <div class="props">
+            {% for link in contacts %}
+                <div class="link">
+                    <img src="" alt="">
+                    <h2>{{ link.name }}</h2>
+                    <a href=""></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

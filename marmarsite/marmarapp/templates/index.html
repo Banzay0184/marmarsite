@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load static menu_tags %}
+{% block content %}
+    <header class="header">
+        {% for project in projects %}
+            {% if forloop.last %}
+                <div class="container">
+                    <div class="header_slider">
+                        <div class="slider_content">
+                            <h1 class="slider_title">
+                                {{ project.title }}
+                            </h1>
+                            <p class="slider_text">
+                                У нас новый проект
+                            </p>
+                            <div class="slider_btn">
+                                <a href="{{ project.get_absolute_url }}" class="nav_btn">посмотреть проекты</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if forloop.last %}
+                <div class="container_right">
+                    <img src="{{ project.image.url }}" class="slider_img" alt="">
+                </div>
+            {% endif %}
+        {% endfor %}
+    </header>
+    <main>
+        <section class="about ">
+            <div class="container">
+                <h1 class="about_title" id="about">О нас</h1>
+                <div class="about_info">
+                    <div class="">
+                        {% for about in projects %}
+                            {% if forloop.first %}
+                                    <img src="{{ about.image.url }}" class="about_video" alt="">
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="about_content">
+                        <h2 class="about_content_title">MArmar design</h2>
+                        <p class="about_content_text">В нашем архитектурном бюро работают высококвалифицированные
+                            специалисты
+                            разных профессий: дизайнеры, архитекторы, инженеры, строители, декораторы, менеджеры –
+                            работают
+                            творчески, профессионально, слаженно. Мы гордимся дружное коллективом профессионалов
+                            работающих
+                            в
+                            наше компании.</p>
+                        <ul class="about_content_info">
+                            <li class="about_content_number">20<span>лет опыта</span></li>
+                            <li class="tochki">.</li>
+                            <li class="about_content_number">116<span>Готовыйх проектов</span></li>
+                            <li class="tochki">.</li>
+                            <li class="about_content_number">14<span>Сотрудников</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section class="marquee">
+            <div class="container">
+                <h1 class="about_user_title">Наши партнеры</h1>
+            </div>
+            <div class="slider_top owl-carousel owl-theme">
+                {% for partner in partners %}
+                    <img src="{{ partner.img.url }}" alt="">
+                {% endfor %}
+            </div>
+        </section>
+        <section class="about_user ">
+            <div class="container">
+                <h1 class="about_user_title" id="about_user">Наши сотрудники</h1>
+            </div>
+            <div class="container_right">
+                <div class="users_slider owl-carousel owl-theme">
+                    {% for user in employees %}
+                        <div class="users">
+                            <img class="users_img" src="{{ user.images.url }}" alt="">
+                            <div class="users_info">
+                                <h2 class="users_info_title">{{ user.name }}</h2>
+                                <p class="users_info_text">{{ user.position }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="projects ">
+            <div class="container">
+                <div class="projects_content" id="projects">
+                    <h2 class="projects_title">Реализованные
+                        проекты</h2>
+                    <a href="" class="projects_text">посмотреть все</a>
+                </div>
+                <ul class="nav_list">
+                    {% get_categories %}
+                </ul>
+            </div>
+            <div class="container_right">
+                <div class="slider_top owl-carousel owl-theme">
+                    {% for slider in projects %}
+                        <a href="{{ slider.get_absolute_url }}">
+                            <img src="{{ slider.image.url }}" alt="" class="projects_slider_img"></a>
+                    {% endfor %}
+                </div>
+                <div class="slider_bottom owl-carousel owl-theme">
+                    {% for slider in projects %}
+                        <a href="{{ slider.get_absolute_url }}">
+                            <img src="{{ slider.image.url }}" alt=""
+                                 class="projects_slider_img"></a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="reviews">
+            <div class="container">
+                <h1 class="reviews_title" id="reviews">что говорят о нас</h1>
+                <div class="reviews_content">
+                    {% for reviewsuser in reviews %}
+                        {% if forloop.counter <= 2 or forloop.last %}
+                            <div class="reviews_users">
+                                <p class="reviews_users_text">{{ reviewsuser.massage }}</p>
+                                <div class="reviews_users_content">
+                                    <img class="reviews_img" src="../static/img/user%201.svg" alt="">
+                                    <h2 class="reviews_users_content_text">{{ reviewsuser.name }}</h2>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="container_right">
+                <div class="reviews_forms">
+                    <div class="slider_reviews">
+                        <img src="../static/img/reviews_bg.png" alt="">
+                    </div>
+                    <div class="reviews_forms_content">
+                        <h2 class="reviews_forms_content_title">оставьте отзыв о нашей компании</h2>
+                        <form class="input_forms" method="post">
+                            {% csrf_token %}
+                            {{ formtw.name }}
+                            {{ formtw.massage }}
+                            {#                            <label>Имя</label>#}
+                            {#                            <input class="input_name" type="text" placeholder="Ваше имя">#}
+                            {#                            <label>Отзыв</label>#}
+                            {#                            <textarea class="input_message" placeholder="Твое сообщение"></textarea>#}
+                            <button type="submit" class="nav_btn form_btn">Отправить отзыв</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="order">
+            <div class="container">
+                <div class="order_content" id="order">
+                    <div class="order_content_title">
+                        <h1 class="order_title">остались вопросы?</h1>
+                        <p class="order_text">Оставьте свои контакты и наш менеджер свяжется с Вами
+                            и ответит на все Ваши вопросы</p></div>
+                    <form class="order_form" method="post">
+                        {% csrf_token %}
+                        {{ form.name }}
+                        {{ form.numbers }}
+                        {#                        <input type="text" class="order_input" placeholder="Имя">#}
+                        {#                        <input type="text" class="order_input" placeholder="Номер телефона ">#}
+                        <button type="submit" value="Submit" class="nav_btn form_btn">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}
